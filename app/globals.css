@@ -1,0 +1,143 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --vst-bg: oklch(0.981 0.004 230);
+  --vst-panel: oklch(1 0 0);
+  --vst-panel-2: oklch(0.966 0.005 230);
+  --vst-line: oklch(0.905 0.006 235);
+  --vst-line-soft: oklch(0.945 0.005 235);
+  --vst-ink: oklch(0.24 0.02 250);
+  --vst-muted-ink: oklch(0.5 0.015 250);
+  --vst-faint-ink: oklch(0.64 0.012 250);
+  --vst-accent: oklch(0.52 0.098 168);
+  --vst-accent-deep: oklch(0.42 0.095 169);
+  --vst-accent-soft: oklch(0.95 0.03 168);
+  --vst-gold: oklch(0.66 0.12 72);
+  --vst-gold-soft: oklch(0.95 0.05 78);
+  --vst-avail: oklch(0.54 0.12 162);
+  --vst-avail-soft: oklch(0.94 0.05 162);
+  --vst-offer: oklch(0.66 0.13 70);
+  --vst-offer-soft: oklch(0.95 0.06 78);
+  --vst-sold: oklch(0.55 0.14 22);
+  --vst-sold-soft: oklch(0.95 0.04 25);
+  --vst-on-hero: oklch(0.99 0.005 230);
+  --vst-on-hero-soft: oklch(0.86 0.03 168);
+
+  --background: var(--vst-bg);
+  --foreground: var(--vst-ink);
+  --card: var(--vst-panel);
+  --card-foreground: var(--vst-ink);
+  --popover: var(--vst-panel);
+  --popover-foreground: var(--vst-ink);
+  --primary: var(--vst-accent);
+  --primary-foreground: var(--vst-on-hero);
+  --secondary: var(--vst-panel-2);
+  --secondary-foreground: var(--vst-ink);
+  --muted: var(--vst-panel-2);
+  --muted-foreground: var(--vst-muted-ink);
+  --accent: var(--vst-accent-soft);
+  --accent-foreground: var(--vst-accent-deep);
+  --destructive: var(--vst-sold);
+  --destructive-foreground: var(--vst-on-hero);
+  --border: var(--vst-line);
+  --input: var(--vst-line);
+  --ring: var(--vst-accent);
+  --radius: 1rem;
+}
+
+@theme inline {
+  --font-sans: var(--font-vst-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-vst-display), Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/40;
+  }
+  body {
+    @apply text-foreground;
+    background-color: var(--vst-bg);
+  }
+}
+
+@layer utilities {
+  .vst-app-bg {
+    background-color: var(--vst-bg);
+    background-image:
+      radial-gradient(60% 40% at 12% 0%, color-mix(in oklch, var(--vst-accent) 8%, transparent), transparent),
+      radial-gradient(50% 40% at 100% 8%, color-mix(in oklch, var(--vst-gold) 7%, transparent), transparent);
+  }
+  .vst-hero-grad {
+    background-image: linear-gradient(135deg, var(--vst-accent-deep), var(--vst-accent) 62%, color-mix(in oklch, var(--vst-accent) 70%, var(--vst-gold)));
+  }
+  .vst-display {
+    font-family: var(--font-serif);
+    letter-spacing: -0.01em;
+  }
+  .vst-nums {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+  .vst-press {
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease, border-color 0.12s ease;
+  }
+  .vst-press:active {
+    transform: scale(0.97);
+  }
+  .vst-no-scrollbar::-webkit-scrollbar { display: none; }
+  .vst-no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .vst-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+  .vst-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .vst-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .vst-pre { white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-word; }
+  .vst-safe-top { padding-top: max(0px, env(safe-area-inset-top)); }
+  .vst-safe-bottom { padding-bottom: max(0px, env(safe-area-inset-bottom)); }
+
+  @keyframes vst-fade-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes vst-fade-up { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes vst-pop { 0% { transform: scale(0.8); opacity: 0; } 60% { transform: scale(1.06); } 100% { transform: scale(1); opacity: 1; } }
+  @keyframes vst-spin { to { transform: rotate(360deg); } }
+  @keyframes vst-toast { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes vst-sheet { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  .vst-fade-in { animation: vst-fade-in 0.3s ease both; }
+  .vst-fade-up { animation: vst-fade-up 0.34s cubic-bezier(0.22,1,0.36,1) both; }
+  .vst-pop { animation: vst-pop 0.32s cubic-bezier(0.22,1,0.36,1) both; }
+  .vst-spin { animation: vst-spin 0.8s linear infinite; }
+  .vst-toast { animation: vst-toast 0.28s cubic-bezier(0.22,1,0.36,1) both; }
+  .vst-sheet { animation: vst-sheet 0.3s cubic-bezier(0.22,1,0.36,1) both; }
+  .vst-delay-1 { animation-delay: 0.04s; }
+  .vst-delay-2 { animation-delay: 0.08s; }
+  .vst-delay-3 { animation-delay: 0.12s; }
+  .vst-delay-4 { animation-delay: 0.16s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .vst-fade-in, .vst-fade-up, .vst-pop, .vst-toast, .vst-sheet { animation: none !important; }
+  }
+}
