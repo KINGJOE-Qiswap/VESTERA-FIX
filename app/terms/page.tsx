@@ -1,34 +1,35 @@
 export default function TermsPage() {
   return (
-    <main style={{fontFamily:'system-ui, -apple-system', background:'#F8FFFE', color:'#0A4D4E', lineHeight:1.7}}>
-      <header style={{background:'#0A4D4E', color:'#fff', padding:'16px 24px', display:'flex', justifyContent:'space-between', position:'sticky', top:0, zIndex:10}}>
-        <div style={{display:'flex', gap:'8px', alignItems:'center'}}><span style={{background:'#00E5CC', color:'#0A4D4E', width:'32px', height:'32px', borderRadius:'8px', display:'flex', alignItems:'center', justifyContent:'center', fontWeight:800}}>V</span><b>VESTERA</b></div>
-        <a href="/" style={{background:'#00E5CC', color:'#0A4D4E', padding:'8px 16px', borderRadius:'20px', textDecoration:'none', fontWeight:700}}>← Home</a>
-      </header>
-
-      <div style={{maxWidth:'850px', margin:'0 auto', padding:'24px'}}>
-        <div style={{textAlign:'center', marginBottom:'32px', paddingBottom:'24px', borderBottom:'3px solid #00E5CC'}}>
-          <h1 style={{fontSize:'2.2rem', marginBottom:'8px'}}>Terms of Service</h1>
-          <p style={{color:'#666'}}><strong>Last Updated: November 1, 2026</strong> | <span style={{background:'#00E5CC', color:'#0A4D4E', padding:'4px 12px', borderRadius:'20px', fontSize:'0.85rem', fontWeight:700}}>UTILITY CATEGORY</span></p>
-          <p style={{background:'#E6FFFE', padding:'12px', borderRadius:'12px', marginTop:'16px'}}><b>VESTERA</b> is a Pi Network Utility App — Real estate solution for diaspora via Pi Auth & Pi Payments</p>
-        </div>
-
-        <div style={{background:'#fff', borderRadius:'16px', padding:'32px', boxShadow:'0 4px 20px rgba(0,0,0,0.06)', borderLeft:'5px solid #00E5CC'}}>
-
-          <h2>1. ACCEPTANCE - UTILITY AGREEMENT</h2>
-          <p>By accessing VESTERA via Pi Browser, you agree to these Terms. VESTERA provides REAL utility: verified affordable lands/houses in Africa for diaspora, Pi escrow, document verification. You must be 18+ and have Pi KYC.</p>
-
-          <h2>2. SERVICES - REAL WORLD UTILITY</h2>
-          <p>VESTERA allows: (a) Search verified properties, (b) Inquire via Pi-authenticated chat, (c) Pay deposit via Pi SDK (d) Escrow until title verified, (e) Track transaction on Pi blockchain. We are NOT a broker — we are a verification & escrow utility layer.</p>
-
-          <h2>3. PI AUTHENTICATION & PAYMENTS - CORE UTILITY</h2>
-          <p><b>Auth:</b> Login via Pi Network SDK only. No passwords stored.<br/><b>Payments:</b> All Pi payments via official Pi SDK createPayment. No private keys collected. Escrow released only after: physical verification, document check, buyer confirmation. Transaction hashes stored on Pi blockchain for transparency. Platform fee 2-5% shown before payment.</p>
-
-          <h2>4. USER RESPONSIBILITIES</h2>
-          <p>You must provide accurate Pi username, conduct due diligence, not submit false listings. Diaspora buyers must complete ID verification for escrow. Any fraud = instant ban + report to Pi Core Team.</p>
-
-          <h2>5. LISTING VERIFICATION</h2>
-          <p>Every listing passes: (a) CAC check, (b) Land registry check, (c) Physical video inspection, (d) Seller ID verification. Verified badge = passed all 4. Non-verified = use at your own risk.</p>
-
-          <h2>6. ESCROW & REFUNDS</h2>
-          <p>Pi held in escrow until 7-day inspection period. Refund if: title fails, seller fake, property not as described. Refund via Pi wallet within 48hrs. No refund after you sign digital
+    <div style={{padding: '24px', maxWidth: '800px', margin: '0 auto', fontFamily: 'sans-serif', lineHeight: '1.6'}}>
+      <a href="/" style={{background: '#00E5CC', color: '#0A4D4E', padding: '8px 16px', borderRadius: '20px', textDecoration: 'none', fontWeight: '700'}}>Home</a>
+      <h1>Terms of Service - VESTERA</h1>
+      <p><strong>Last Updated: November 1, 2026 - Utility App</strong></p>
+      
+      <h2>1. Acceptance - Utility Agreement</h2>
+      <p>VESTERA is a Pi Network Utility App for real estate. By using Pi Auth you agree to these terms. You must be 18 plus and have Pi KYC.</p>
+      
+      <h2>2. Services - Real World Utility</h2>
+      <p>We provide verified properties in Nigeria and Ghana, escrow via Pi payments, document verification. We are a verification and escrow utility layer, not a broker.</p>
+      
+      <h2>3. Pi Authentication and Payments</h2>
+      <p>Auth via Pi SDK only. Payments via official Pi SDK createPayment. No private keys collected. Escrow released only after physical verification, document check, buyer confirmation. Fee 2 to 5 percent shown before payment.</p>
+      
+      <h2>4. User Responsibilities</h2>
+      <p>Provide accurate Pi username, conduct due diligence, no false listings. Diaspora buyers must complete ID verification for escrow.</p>
+      
+      <h2>5. Listing Verification</h2>
+      <p>Every listing passes CAC check, land registry check, physical video inspection, seller ID verification. Verified badge means passed all 4.</p>
+      
+      <h2>6. Escrow and Refunds</h2>
+      <p>Pi held in escrow until 7 day inspection. Refund if title fails, seller fake, property not as described. Refund via Pi wallet within 48 hours. No refund after deed acceptance.</p>
+      
+      <h2>7. Prohibited Use</h2>
+      <p>No money laundering, no fake listings, no bypassing Pi payments, no scraping.</p>
+      
+      <h2>8. Contact</h2>
+      <p>Email: support@vestera.com - Lagos, Nigeria - VESTERA Utility for Pi Network</p>
+      
+      <footer style={{marginTop: '40px', padding: '20px', background: '#0A4D4E', color: 'white', textAlign: 'center'}}>2026 VESTERA - Utility App for Pi Network</footer>
+    </div>
+  )
+}
