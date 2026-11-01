@@ -47,7 +47,19 @@ export function PiAuthProvider({ children }: { children: React.ReactNode }) {
               });
             } else {
               setIsReady(true);
-              setAuthMessage("Open in Pi Browser to sign in.");
+              // AUTO-DETECT Pi Browser
+const isPiBrowser = navigator.userAgent.includes("PiBrowser") || (window as any).Pi || window.location.href.includes("pi://");
+
+if (isPiBrowser) {
+  setAuthMessage("Pi Browser detected - Initializing Pi...");
+  // Force load Pi SDK immediately
+  if ((window as any).Pi) {
+    const Pi = (window as any).Pi;
+    Pi.init({ version: "2.0", sandbox: false });
+  }
+} else {
+  setAuthMessage("Open in Pi Browser for full Pi features");
+}
             }
           };
           script.onerror = () => {
