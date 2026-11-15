@@ -1,4 +1,5 @@
 "use client";
+
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 type PiAuthContextType = {
@@ -26,71 +27,67 @@ export function PiAuthProvider({ children }: { children: React.ReactNode }) {
   const [authMessage, setAuthMessage] = useState("Initializing Pi Network...");
 
   useEffect(() => {
+    let cancelled = false;
+    let tries = 0;
+
     const initPi = async () => {
-      try {
-        // Check if in Pi Browser
-        if (typeof window !== 'undefined' && (window as any).Pi) {
-          const Pi = (window as any).Pi;
-          await Pi.init({ version: "2.0", sandbox: false });
+      // Wait a little for SDK from layout.tsx to load
+      while (!(window as any).Pi && tries < 20 && !cancelled) {
+        await new Promise((r) => setTimeout(r, 200));
+        tries++;
+      }
+
+      if (cancelled) return;
+
+      const Pi = (window as any).Pi;
+
+      if (Pi) {
+        try {
+          // New SDK style - no sandbox param
+          await Pi.init({ version: "2.0" });
           setIsReady(true);
           setAuthMessage("Pi is ready. Tap Continue to sign in.");
-        } else {
-          // Not in Pi Browser - load SDK script
-          const script = document.createElement('script');
-          script.src = 'https://sdk.minepi.com/pi-sdk.js';
-          script.onload = () => {
-            const Pi = (window as any).Pi;
-            if (Pi) {
-              Pi.init({ version: "2.0", sandbox: false }).then(() => {
-                setIsReady(true);
-                setAuthMessage("Pi is ready. Tap Continue to sign in.");
-              });
-            } else {
-              setIsReady(true);
-              // AUTO-DETECT Pi Browser
-const isPiBrowser = navigator.userAgent.includes("PiBrowser") || (window as any).Pi || window.location.href.includes("pi://");
-
-if (isPiBrowser) {
-  setAuthMessage("Pi Browser detected - Initializing Pi...");
-  // Force load Pi SDK immediately
-  if ((window as any).Pi) {
-    const Pi = (window as any).Pi;
-    Pi.init({ version: "2.0", sandbox: false });
-  }
-} else {
-  setAuthMessage("Open in Pi Browser for full Pi features");
-}
-            }
-          };
-          script.onerror = () => {
-            setIsReady(true);
-            setAuthMessage("Please open in Pi Browser to continue.");
-          };
-          document.body.appendChild(script);
+          return;
+        } catch (err) {
+          console.error(err);
         }
-      } catch (err) {
-        console.error(err);
-        setIsReady(true);
-        setAuthMessage("Please open in Pi Browser.");
+      }
+
+      // No Pi = not in Pi Browser, don't hang - let user continue
+      setIsReady(true);
+      const isPiBrowser =
+        typeof navigator !== "undefined" &&
+        (navigator.userAgent.includes("PiBrowser") ||
+          (window as any).ReactNativeWebView);
+      if (isPiBrowser) {
+        setAuthMessage("Pi Browser detected - Initializing Pi...");
+      } else {
+        setAuthMessage("Open in Pi Browser for full Pi features");
       }
     };
+
     initPi();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const login = async () => {
     try {
       const Pi = (window as any).Pi;
       if (!Pi) {
-        alert("Please open this app in Pi Browser:\nhttps://minepi.com/pi-browser/");
+        alert("Please open this app in Pi Browser");
         window.open("https://minepi.com/pi-browser/", "_blank");
         return;
       }
       setAuthMessage("Authenticating...");
-      const auth = await Pi.authenticate(['username', 'payments'], () => {});
-      setUsername(auth.user.username);
+      const auth = await Pi.authenticate(["username", "payments"], (payment: any) => {
+        console.log("Incomplete payment:", payment);
+      });
       setIsAuthenticated(true);
-      setAuthMessage(`Welcome ${auth.user.username}!`);
-    } catch (err: any) {
+      setUsername(auth.user.username);
+      setAuthMessage(`Welcome ${auth.user.username}`);
+    } catch (err) {
       console.error(err);
       setAuthMessage("Auth failed. Try in Pi Browser.");
       alert("Auth failed - Please open in Pi Browser app");
