@@ -89,10 +89,13 @@ export function PiAuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => { initPi(); }, [initPi]);
 
-  const login = async () => {
-    try {
-      const Pi = (window as any).Pi;
-      if (!Pi) {
+  const login = async () => {92  const login = async () => {
+93    alert("Continue clicked! Pi exists? " + (!!(window as any).Pi));
+94    setAuthMessage("Continue clicked - checking Pi...");
+95    try {
+96      const Pi = (window as any).Pi;
+97      if (!Pi) {
+    
         if (typeof window !== "undefined" && !window.open("https://minepi.com/pi-browser/", "_blank")) {}
         setAuthMessage("Please open this app in Pi Browser");
         return;
