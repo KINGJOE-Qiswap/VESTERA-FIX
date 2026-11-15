@@ -89,7 +89,7 @@ export function PiAuthProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => { initPi(); }, [initPi]);
 
-  const login = async () => {92  const login = async () => {
+  const login = async () => {
 93    alert("Continue clicked! Pi exists? " + (!!(window as any).Pi));
 94    setAuthMessage("Continue clicked - checking Pi...");
 95    try {
