@@ -18,8 +18,8 @@ const vstDisplay = Fraunces({
 
 export const metadata: Metadata = {
   title: "Made with App Studio",
-  description: "VESTERA — the Pi property marketplace priced in Pi at Global Consensus Value.",
-    generator: 'v0.app'
+  description: "VESTERA - the Pi property marketplace priced in Pi at Global Consensus Value.",
+  generator: 'v0.app'
 };
 
 export const viewport: Viewport = {
@@ -41,6 +41,9 @@ export default function RootLayout({
       lang="en"
       className={`${vstSans.variable} ${vstDisplay.variable} ${GeistMono.variable}`}
     >
+      <head>
+        <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+      </head>
       <body className="bg-background">
         <AppWrapper>{children}</AppWrapper>
       </body>
