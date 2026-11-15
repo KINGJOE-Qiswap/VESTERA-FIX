@@ -101,7 +101,7 @@ export function PiAuthProvider({ children }: { children: React.ReactNode }) {
         return;
       }
       setAuthMessage("Authenticating...");
-      const auth = await Pi.authenticate(["username", "payments"], (payment: any) => {
+      const auth = await Pi.authenticate(["username"],(payment: any) => {
         console.log("Incomplete payment:", payment);
       });
       setIsAuthenticated(true);
