@@ -215,7 +215,10 @@ export function VesteraProvider({ children }: { children: ReactNode }) {
 
   // load
   useEffect(() => {
-    if (!isAuthenticated) return;
+       if (!isAuthenticated) {
+     setReady(true);
+     return;
+   }
     let cancelled = false;
     const store = storeOf(sdk);
     const writer = new KeyWriter(store, (v) => setStorageTrouble(v));
