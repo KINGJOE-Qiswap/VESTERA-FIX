@@ -156,7 +156,7 @@ const PEER_REPLIES = [
 ];
 
 export function VesteraProvider({ children }: { children: ReactNode }) {
-  const { sdk, isAuthenticated } = usePiAuth();
+  const { sdk, username: piUsername, isAuthenticated } = usePiAuth();
 
   const [ready, setReady] = useState(false);
   const [storageTrouble, setStorageTrouble] = useState(false);
@@ -205,7 +205,7 @@ export function VesteraProvider({ children }: { children: ReactNode }) {
   agentsRef.current = agents;
   savedSearchesRef.current = savedSearches;
 
-  const displayName = name.trim() || "Pi Pioneer";
+  const displayName = name.trim() || (piUsername ? `@${piUsername}` : "") || "Pi Pioneer";
 
   const toast = (text: string, tone: Toast["tone"] = "info") => {
     const id = makeId();
