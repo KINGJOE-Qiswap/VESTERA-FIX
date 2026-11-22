@@ -2,6 +2,7 @@
 
 import { useMemo, useState, type ReactNode } from "react";
 import { useVestera } from "@/contexts/vestera-context";
+import { usePiAuth } from "@/contexts/pi-auth-context";
 import {
   PROPERTY_TYPES,
   type Listing,
