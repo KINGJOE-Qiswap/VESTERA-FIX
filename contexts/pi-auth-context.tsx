@@ -106,6 +106,8 @@ export function PiAuthProvider({ children }: { children: React.ReactNode }) {
       });
       setIsAuthenticated(true);
       setUsername(auth.user.username);
+      localStorage.setItem("vestera_user", auth.user.username);
+localStorage.setItem("vestera_token", auth.accessToken);
       setAuthMessage(`Welcome ${auth.user.username}`);
     } catch (err) {
       console.error(err);
