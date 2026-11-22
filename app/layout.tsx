@@ -2,7 +2,7 @@ import type React from "react";
 import type { Metadata, Viewport } from "next";
 import { GeistMono } from "geist/font/mono";
 import { Manrope, Fraunces } from "next/font/google";
-import { AppWrapper } from "@/components/app-wrapper";
+import AppWrapper from "@/components/app-wrapper";
 import "./globals.css";
 
 const vstSans = Manrope({
@@ -10,6 +10,7 @@ const vstSans = Manrope({
   weight: ["400", "500", "600", "700", "800"],
   variable: "--font-vst-sans",
 });
+
 const vstDisplay = Fraunces({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -17,9 +18,8 @@ const vstDisplay = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Made with App Studio",
-  description: "VESTERA - the Pi property marketplace priced in Pi at Global Consensus Value.",
-  generator: 'v0.app'
+  title: "VESTERA - Pi Property Marketplace",
+  description: "VESTERA - the Pi property marketplace priced in Pi",
 };
 
 export const viewport: Viewport = {
