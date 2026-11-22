@@ -22,6 +22,7 @@ import { useNav } from "./nav";
 
 export function BrowseScreen() {
   const { allListings, setTab } = useVestera();
+  const { isAuthenticated, username, login, isReady } = usePiAuth();
   const nav = useNav();
   const [filter, setFilter] = useState<PropertyType | "all">("all");
 
