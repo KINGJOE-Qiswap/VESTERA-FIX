@@ -44,6 +44,13 @@ export function BrowseScreen() {
           </div>
           <KycBadge label="Pi Verified" />
         </div>
+        {isAuthenticated ? (
+  <span className="text-[11px] font-bold">@{username}</span>
+) : (
+  <button onClick={login} disabled={!isReady} className="text-[11px] font-bold bg-[var(--vst-ink)] text-white px-3 py-1.5 rounded-full">
+    {isReady ? "Login with Pi" : "Loading..."}
+  </button>
+)}
       </header>
 
       <section className="px-4 pt-4">
