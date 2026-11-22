@@ -86,7 +86,14 @@ export function PiAuthProvider({ children }: { children: React.ReactNode }) {
     init();
     return () => { cancelled = true; };
   }, []);
-
+useEffect(() => {
+  const saved = localStorage.getItem("vestera_user");
+  if (saved) {
+    setUsername(saved);
+    setIsAuthenticated(true);
+    setAuthMessage(`Welcome back ${saved}`);
+  }
+}, []);
   useEffect(() => { initPi(); }, [initPi]);
 
   const login = async () => {
@@ -107,7 +114,7 @@ export function PiAuthProvider({ children }: { children: React.ReactNode }) {
       setIsAuthenticated(true);
       setUsername(auth.user.username);
       localStorage.setItem("vestera_user", auth.user.username);
-localStorage.setItem("vestera_token", auth.accessToken);
+      localStorage.setItem("vestera_token", auth.accessToken);
       setAuthMessage(`Welcome ${auth.user.username}`);
     } catch (err) {
       console.error(err);
