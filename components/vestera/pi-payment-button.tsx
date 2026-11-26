@@ -62,18 +62,37 @@ export function PiPaymentButton({ purpose, className, onVerified }: PaymentButto
 }
 
 export function WalletConnectionButton() {
-  const { sdk } = usePiAuth();
+  const { login, isAuthenticated, username, isReady } = usePiAuth();
   const [status, setStatus] = useState<string | null>(null);
+
+  const handleConnect = async () => {
+    setStatus(null);
+    try {
+      await login();
+      setStatus("Pi Wallet connected");
+    } catch (err) {
+      console.error(err);
+      setStatus("Failed to connect Pi Wallet. Open in Pi Browser.");
+    }
+  };
+
+  if (isAuthenticated) {
+    return (
+      <div className="flex items-center gap-2 text-sm text-green-600">
+        <CheckCircle2 className="h-4 w-4" />
+        <span>Connected as {username}</span>
+      </div>
+    );
+  }
+
   return (
-    <Button variant="outline" className="w-full" disabled={!sdk} onClick={async () => {
-      if (!sdk) return;
-      try {
-        const restored = await sdk.state.restore();
-        setStatus(`Pi Wallet connected · ${restored.purchases.length} purchase record${restored.purchases.length === 1 ? "" : "s"}`);
-      } catch { setStatus("Unable to connect Pi Wallet right now."); }
-    }}>
-      {status ?? "Connect Pi Wallet"}
-    </Button>
+    <div className="flex flex-col gap-2">
+      <Button onClick={handleConnect} disabled={!isReady} className="w-full">
+        <Wallet className="mr-2 h-4 w-4" />
+        Connect with Pi
+      </Button>
+      {status && <p className="text-xs text-muted-foreground">{status}</p>}
+    </div>
   );
 }
 
