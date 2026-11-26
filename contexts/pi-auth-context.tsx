@@ -87,10 +87,8 @@ export function PiAuthProvider({ children }: { children: React.ReactNode }) {
     return () => { cancelled = true; };
   }, []);
 useEffect(() => {
-  const saved = localStorage.getItem("vestera_user");
-  if (saved) {
-    setUsername(saved);
-    setIsAuthenticated(true);
+  // Do NOT restore user from localStorage.
+// Pi Browser must tell us who the user is every time.
     setAuthMessage(`Welcome back ${saved}`);
   }
 }, []);
