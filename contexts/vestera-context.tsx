@@ -626,4 +626,4 @@ export function useVestera() {
 export function displayNameFor(name: string): string {
   return name.trim();
 }
-}
+
