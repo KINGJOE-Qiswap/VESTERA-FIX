@@ -69,7 +69,7 @@ export interface Toast {
 }
 
 export interface ListingInput {
-  title: string;
+   
   propertyType: PropertyType;
   description: string;
   location: string;
